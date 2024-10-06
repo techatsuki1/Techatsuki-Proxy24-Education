@@ -1,2 +1,13 @@
 
 Education/media/videos/Building_a_Realtime_Chat_Application___Python___Django_Channels___Websockets.mp4
+*.mp4
+# Ignore Python compiled files
+__pycache__/
+*.pyc
+
+# Ignore media files
+*.mpr  # Exclude all .mpr files
+
+# Ignore other file types
+*.log
+*.sqlite3

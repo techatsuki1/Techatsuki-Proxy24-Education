@@ -11,7 +11,8 @@ urlpatterns = [
     path('auth/',views.auth,name='auth'),
     path('about/',views.about,name="about"),
     path('upload/',views.upload,name="upload"),
-    
+    path('learning/',views.learning,name="learning"),
+    path('detect-scene/', views.detect, name='detect'),
     
 ]
 if settings.DEBUG:

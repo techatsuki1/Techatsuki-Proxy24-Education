@@ -127,7 +127,7 @@
           <a class="nav-link active" aria-current="page" href="{% url 'upload' %}">Upload</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Learning Videos</a>
+            <a class="nav-link" href="{% url 'learning' %}">Learning Videos</a>
           </li>
       </ul>
     </div>
@@ -185,6 +185,7 @@
             <video id="userVideo" width="100%" controls></video>
           </div>
         </div>
+        <button id="detectBtn" class="btn btn-upload mt-4">Detect</button>
       </div>
     </div>
   </div>
@@ -262,6 +263,32 @@
     }
 });
 
+
+</script>
+<script>
+  $(document).ready(function() {
+    $('#detectBtn').on('click', function() {
+      // Show loading indicator if needed
+      // Perform AJAX request to the detect view
+      $.ajax({
+        url: "{% url 'detect' %}", // Adjust this URL based on your Django URL configuration
+        type: 'POST',
+        data: {
+          // You can pass any additional data here if needed
+          csrfmiddlewaretoken: '{{ csrf_token }}', // Include CSRF token
+        },
+        success: function(response) {
+          // Handle successful response
+          console.log("Detection completed:", response);
+          // Optionally, update the UI with the results
+        },
+        error: function(xhr, status, error) {
+          // Handle error response
+          console.error("Error during detection:", error);
+        }
+      });
+    });
+  });
 </script>
 </body>
 </html>
