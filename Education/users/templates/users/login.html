@@ -1,0 +1,159 @@
+{% extends "main/design/header.html" %}
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+{% block content %} 
+<style>
+    body {
+        font-family: 'Georgia', serif; /* Classic font */
+    }
+
+    .content-section {
+        background: #ffffff; /* White background for the form */
+        border: 1px solid #ccc; /* Light grey border */
+        border-radius: 8px; /* Slightly rounded corners */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        padding: 2rem;
+        max-width: 400px; /* Narrower width for a classic look */
+        margin: auto;
+        font-size: 20px;
+    }
+
+    .content-section legend {
+        color: #333; /* Darker text for the legend */
+        font-weight: bold;
+        font-size: 1.5rem; /* Larger font size */
+        text-align: center;
+        margin-bottom: 20px; /* Space below the legend */
+    }
+
+    .content-section p {
+        text-align: center;
+    }
+
+    .content-section .form-control {
+        margin-bottom: 15px;
+        border-radius: 4px; /* Slightly less rounded */
+        border: 1px solid #aaa; /* Grey border */
+        padding: 10px; /* More padding for inputs */
+    }
+
+    .content-section .btn {
+        border-radius: 4px; /* Match the input border radius */
+        background-color: #007bff; /* Classic blue color */
+        color: white;
+        width: 100%;
+        padding: 12px; /* Increased padding */
+        margin-bottom: 10px;
+        font-size: 1rem; /* Larger font size */
+        transition: background-color 0.3s ease; /* Smooth transition */
+    }
+
+    .content-section .btn:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    .content-section .btn-outline-info {
+        border: 1px solid #007bff; /* Blue border */
+        color: #007bff;
+        background-color: transparent;
+    }
+
+    .content-section .btn-outline-info:hover {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .content-section .border-top {
+        border-top: 1px solid #ccc; /* Light grey border */
+        padding-top: 10px;
+        text-align: center;
+    }
+
+    .content-section .text-muted a {
+        color: #007bff; /* Classic link color */
+        text-decoration: none;
+    }
+
+    .content-section .text-muted a:hover {
+        text-decoration: underline;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .content-section {
+            padding: 1rem;
+            font-size: 18px;
+        }
+
+        .content-section legend {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .content-section .btn {
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+
+        .content-section .btn-outline-info {
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .content-section {
+            padding: 0.8rem;
+            font-size: 16px;
+        }
+
+        .content-section legend {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .content-section .btn {
+            padding: 8px;
+            font-size: 0.8rem;
+        }
+
+        .content-section .btn-outline-info {
+            padding: 8px;
+            font-size: 0.8rem;
+        }
+
+        .content-section .form-control {
+            padding: 8px;
+        }
+    }
+</style>
+
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="mb-4">Log In</legend>
+            {{ form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn" type="submit">Login</button>
+            <br>
+            <center>
+                {% comment %} <a class="btn btn-outline-info" href="{% provider_login_url 'google' %}?next=/"> {% endcomment %}
+                    <i class="fa-brands fa-google" style="color: #74C0FC;"></i>
+                    Login with Google
+                </a>
+            </center>
+        </div>
+        <br>
+    </form>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+        </small><br>
+        <small class="text-muted">
+            <a href="{% url 'password_reset' %}">Forgot password?</a>
+        </small>
+    </div>
+</div>
+{% endblock content %}

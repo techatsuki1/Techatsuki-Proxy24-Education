@@ -1,222 +1,134 @@
-<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/all.css">
-<style>
-    @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@400&display=swap");
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edu-Cini</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .navbar {
+      padding: 20px;
+    }
 
-* {
-  font-family: "Ubuntu", sans-serif;
-}
+    .navbar-nav .nav-link {
+      font-weight: 500;
+    }
 
-body {
-  background-color: #222;
-  color: #fff;
-}
+    .navbar-nav .nav-link.active {
+      color: #ff66b2 !important; /* Light pink color for the active link */
+    }
 
-#drop-area {
-  border: 2px dashed #aaa;
-  padding: 20px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #333;
-  border-radius: 8px;
-  min-height: 2in;
-  flex-direction: column;
-  gap: 10px;
-  cursor: pointer;
-}
+    /* Header styling */
+    .header-image {
+      position: relative;
+      height: 500px;
+      background-image: url('./images/header.jpg'); /* Replace with your actual image URL */
+      background-size: cover;
+      background-position: center;
+    }
 
-.drop-text {
-  font-size: 18px;
-  color: #888;
-}
+    .header-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 48px;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+      text-align: center;
+    }
 
-#dropped-content {
-  width: calc(100% - 23px);
-  height: 200px;
-  min-height: 69px;
-  max-height: 312px;
-  margin-top: 20px;
-  font-size: 16px;
-  padding: 10px;
-  border: 1px solid #555;
-  resize: vertical;
-  background-color: #444;
-  color: #fff;
-  outline: none;
-  border-radius: 8px;
-}
+    /* Content section styling */
+    .content-section {
+      padding: 50px 0;
+    }
 
-#dropped-content::-webkit-scrollbar {
-  width: 8px;
-}
+    .content-section h2 {
+      font-size: 36px;
+      font-weight: bold;
+    }
 
-#dropped-content::-webkit-scrollbar-track {
-  background-color: #444;
-}
+    .content-section img {
+        margin-left: 10vw;
+      max-width: 100%;
+      height: 50vh;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
 
-#dropped-content::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 4px;
-}
-
-#dropped-content::-webkit-scrollbar-thumb:hover {
-  background-color: #aaa;
-}
-
-.drop-icon i {
-  color: #888;
-  font-size: 4.5rem;
-}
-
-#chars {
-  color: #888;
-  float: right;
-}
-
-#spellcheck {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-#outer-dot {
-  background-color: #007bff;
-  width: 3rem;
-  height: 1.5rem;
-  border-radius: 100px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: background 200ms;
-}
-
-#dot {
-  background-color: #eee;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  margin: 0 5px;
-  transform: translateX(22px);
-  transition: transform 200ms;
-}
-
-</style>
-<div id="drop-area">
-    <form class="my-form">
-      <div class="drop-icon">
-        <i class="fa fa-upload"></i>
-      </div>
-      <div class="drop-text">Drag and drop files here</div>
-      <input type="file" id="fileElem" accept="video/*" onchange="handleFiles(this.files)" style="display:none;">
-      <label class="button" for="fileElem">Select video files</label>
-    </form>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">TECHATSUKI</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about' %}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'upload' %}">Upload</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Learning Videos</a>
+        </li>
+      </ul>
+    </div>
   </div>
-  <progress id="progress-bar" max=100 value=0></progress>
+</nav>
 
-<script>
-    const dropArea = document.getElementById("drop-area");
-const droppedContent = document.getElementById("dropped-content");
-
-dropArea.addEventListener("dragenter", preventDefaults, false);
-dropArea.addEventListener("dragover", preventDefaults, false);
-dropArea.addEventListener("dragleave", handleDragLeave, false);
-dropArea.addEventListener("drop", handleDrop, false);
-
-dropArea.addEventListener("dragenter", highlight, false);
-dropArea.addEventListener("dragover", highlight, false);
-dropArea.addEventListener("dragleave", unhighlight, false);
-dropArea.addEventListener("drop", unhighlight, false);
-dropArea.addEventListener("click", openFileDialog, false);
-
-function preventDefaults(event) {
-  event.preventDefault();
-  event.stopPropagation();
-}
-
-function highlight() {
-  dropArea.classList.add("highlight");
-  dropArea.innerHTML = `
-  <div class="drop-icon">
-    <i class="fa-light fa-file-upload"></i>
+<!-- Header Section with Image -->
+<div class="header-image" style="background-image: url('{% static 'images/header.jpg' %}'); height: 500px;">
+  <div class="header-text">
+    Become a Star in Cinematic Acting
   </div>
-  <div class="drop-text">Drop files</div>
-  `; // Add this line
-}
+</div>
 
-function unhighlight() {
-  dropArea.classList.remove("highlight");
-  dropArea.innerHTML = `
-  <div class="drop-icon">
-    <i class="fa-light fa-file-upload"></i>
+<!-- Content Section 1 -->
+<div class="container content-section">
+  <div class="row align-items-center">
+    <!-- Text on the left -->
+    <div class="col-md-6">
+      <h2>Try Acting Like Big Stars</h2>
+      <p style="width: 90%;">Unleash your potential and step into the spotlight by mastering the techniques used by the stars of the big screen.</p>
+      <a href="video.html" class="btn btn-primary btn-try-it">Try It</a>
+    </div>
+    <!-- Small image on the right -->
+    <div class="col-md-6">
+      <img src="{% static 'images/sk.jpeg' %}" alt="Acting Image"> <!-- Replace with your actual image URL -->
+    </div>
   </div>
-  <div class="drop-text">Drag and drop files here</div>
-  `;
-}
+</div>
 
-function handleDragLeave(event) {
-  if (event.relatedTarget !== null) {
-    return;
-  }
-  unhighlight();
-}
-
-function handleDrop(event) {
-  event.preventDefault();
-  const file = event.dataTransfer.files[0];
-  const reader = new FileReader();
-
-  reader.readAsText(file);
-  reader.onload = function () {
-    droppedContent.value = reader.result;
-  };
-
-  unhighlight();
-}
-
-function openFileDialog(event) {
-  const fileInput = document.createElement("input");
-  fileInput.type = "file";
-  fileInput.accept = "text/plain";
-
-  fileInput.addEventListener("change", handleFileSelect, false);
-
-  fileInput.click();
-}
-
-function handleFileSelect(event) {
-  const file = event.target.files[0];
-  const reader = new FileReader();
-
-  reader.readAsText(file);
-  reader.onload = function () {
-    droppedContent.value = reader.result;
-  };
-}
-
-const chars = document.getElementById("chars");
-
-droppedContent.addEventListener("input", () => {
-  chars.innerHTML = `${droppedContent.value.length}/5000`;
-});
-
-const outerDot = document.getElementById("outer-dot");
-const dot = document.getElementById("dot");
-let isSpellcheck = true;
-
-outerDot.addEventListener("click", () => {
-  isSpellcheck = !isSpellcheck;
-  droppedContent.focus();
-
-  if (!isSpellcheck) {
-    dot.style.transform = "none";
-    outerDot.style.backgroundColor = "#444";
-    droppedContent.spellcheck = false;
-  } else {
-    dot.removeAttribute("style");
-    outerDot.removeAttribute("style");
-    droppedContent.spellcheck = true;
-  }
-});
-
-</script>
+<!-- Content Section 2 (Image on the left, content on the right) -->
+<div class="container content-section">
+  <div class="row align-items-center">
+    <!-- Small image on the left -->
+    <div class="col-md-6">
+      <img src="{% static 'images/sai.jpeg' %}" alt="Acting Image" style="margin-left: 0vw;"> <!-- Replace with your actual image URL -->
+    </div>
+    <!-- Text on the right -->
+    <div class="col-md-6">
+      <h2>Watch Videos and Learn Acting</h2>
+      <p style="width: 90%;">Learn from the best by watching curated videos, where you can explore different acting techniques and hone your skills.</p>
+      <a href="#" class="btn btn-primary btn-try-it">Start Watching</a>
+    </div>
+  </div>
+</div>
+<footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
+  <div class="container text-center">
+    <small>Copyright &copy; Techatsuki 2024</small>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

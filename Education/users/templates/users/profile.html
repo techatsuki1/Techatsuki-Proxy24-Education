@@ -1,0 +1,420 @@
+{% extends "main/design/header.html" %}
+{% load crispy_forms_tags %}
+{% load static %} 
+{% block content %}
+
+<style>
+
+    .sf-hidden {
+        display: none !important
+    }
+</style>
+<style>
+    img[src="data:,"],
+    source[src="data:,"] {
+        display: none !important
+    }
+</style>
+
+<body id="udemy class=udemy">
+    <style id="onetrust-style">
+        @keyframes onetrust-fade-in {
+            0% {
+                opacity: 0
+            }
+
+            100% {
+                opacity: 1
+            }
+        }
+
+        @media only screen and (min-width:426px) and (max-width:896px) and (orientation:landscape) {}
+
+        @media only screen and (max-width:600px) {}
+
+        @media (min-width:400px) {}
+
+        @media (min-width:550px) {}
+
+        @media (min-width:550px) {}
+
+        @media only screen and (max-width:425px) {}
+
+        @media only screen and (min-width:426px) and (max-width:896px) {}
+
+        @media only screen and (min-width:550px) {}
+
+        @media only screen and (min-width:425px) and (max-width:550px) {}
+
+        @media only screen and (min-width:769px) {}
+
+        @media only screen and (min-width:897px) and (max-width:1023px) {}
+
+        @media only screen and (min-width:1024px) {}
+
+        @media only screen and (min-width:890px) {}
+
+        @media only screen and (min-width:1280px) {}
+
+        @supports not (-ms-high-contrast:none) {
+            #onetrust-banner-sdk {
+                max-width: 960px;
+                margin: 0px auto;
+                box-shadow: none
+            }
+
+            #onetrust-consent-sdk #onetrust-banner-sdk {
+                padding: 16px;
+                background-color: transparent
+            }
+
+            #onetrust-banner-sdk .ot-sdk-container {
+                border-radius: 0px;
+                border: 1px solid white;
+                background-color: #1C1D1F;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.24);
+                padding: 24px;
+                width: 100%
+            }
+
+            #onetrust-banner-sdk .ot-sdk-row {
+                display: flex
+            }
+
+            @media screen and (max-width:600px) {
+                #onetrust-banner-sdk .ot-sdk-row {
+                    flex-direction: column
+                }
+            }
+
+            #onetrust-banner-sdk .ot-sdk-columns {
+                float: initial
+            }
+
+            #onetrust-banner-sdk:not(.ot-iab-2) #onetrust-group-container {
+                width: auto
+            }
+
+            @media screen and (min-width:601px) {
+                #onetrust-banner-sdk #onetrust-policy {
+                    margin: 0 8px 0 0
+                }
+            }
+
+            @media screen and (max-width:600px) {
+                #onetrust-banner-sdk #onetrust-policy {
+                    margin: 0 0 16px 0
+                }
+            }
+
+            #onetrust-banner-sdk p,
+            #onetrust-pc-sdk p,
+            #ot-sdk-cookie-policy p {
+                margin: 0;
+                font-size: .88em !important
+            }
+
+            #onetrust-banner-sdk:not(.ot-iab-2).vertical-align-content #onetrust-button-group-parent {
+                position: initial;
+                left: initial;
+                top: initial;
+                transform: initial;
+                width: auto
+            }
+
+            #onetrust-banner-sdk #onetrust-button-group-parent {
+                padding: 0;
+                margin: 0;
+                min-width: auto;
+                width: auto
+            }
+
+            #onetrust-banner-sdk #onetrust-button-group {
+                padding: 0;
+                margin: 0;
+                width: auto;
+                text-align: initial;
+                display: flex
+            }
+
+            #onetrust-banner-sdk #onetrust-button-group button,
+            #onetrust-banner-sdk #onetrust-button-group button:last-of-type {
+                font-size: .88em !important;
+                padding: 0;
+                margin: 0
+            }
+
+            #onetrust-banner-sdk #onetrust-accept-btn-handler,
+            #onetrust-banner-sdk #onetrust-pc-btn-handler {
+                padding: 0;
+                margin: 0;
+                min-height: 40px;
+                padding: 12px 8px
+            }
+
+            @media screen and (max-width:600px) {
+
+                #onetrust-banner-sdk #onetrust-accept-btn-handler,
+                #onetrust-consent-sdk #onetrust-reject-all-handler,
+                #onetrust-banner-sdk #onetrust-pc-btn-handler {
+                    width: 50%;
+                    min-width: auto;
+                    max-width: auto;
+                    text-align: center
+                }
+            }
+
+            @media screen and (min-width:601px) {
+
+                #onetrust-banner-sdk #onetrust-accept-btn-handler,
+                #onetrust-consent-sdk #onetrust-reject-all-handler,
+                #onetrust-banner-sdk #onetrust-pc-btn-handler {
+                    width: 140px;
+                    max-width: 140px;
+                    min-width: 140px
+                }
+            }
+
+            @media only screen and (min-width:426px) and (max-width:896px) {
+                #onetrust-banner-sdk .has-reject-all-button #onetrust-pc-btn-handler.cookie-setting-link {
+                    text-align: center !important
+                }
+            }
+
+            #onetrust-consent-sdk #onetrust-pc-btn-handler,
+            #onetrust-consent-sdk #onetrust-pc-btn-handler.cookie-setting-link {
+                border: 1px solid white;
+                text-decoration: none;
+                margin-right: 8px !important
+            }
+
+            #onetrust-consent-sdk #onetrust-reject-all-handler {
+                margin-right: 8px !important
+            }
+
+            #onetrust-banner-sdk #onetrust-close-btn-container {
+                display: none
+            }
+
+            #onetrust-pc-sdk .ot-fltr-btns {
+                padding-top: 10px
+            }
+
+            #onetrust-group-container .ot-optout-signal {
+                border: none;
+                background-color: none;
+                color: black
+            }
+
+            .ot-optout-signal span {
+                color: black
+            }
+        }
+
+        @media (max-width:767px) {}
+
+        @media (min-width:768px) {}
+
+        @media (max-width:640px) {}
+
+        @media (max-width:640px) and (orientation:portrait) {}
+
+        @media (max-width:425px) {}
+
+        @media only screen and (max-height:425px) and (max-width:896px) and (orientation:landscape) {}
+
+        @media (max-width:425px),
+        (max-width:896px) and (max-height:425px) and (orientation:landscape) {}
+
+        @media only screen and (max-height:610px) {}
+
+        @media (max-width:425px) and (orientation:landscape) {}
+
+        @media only screen and (max-width:530px) {}
+    </style>
+    
+    <div class=ud-main-content-wrapper>
+        <div class="ud-app-loader ud-component--header-v6--header ud-header ud-app-loaded" data-module-id=common/desktop
+            data-module-args='{"isLoggedIn":true,"isInstructorSignupEnabled":false,"mobileAppLink":{"url":"/mobile/"},"shouldEnableAIAssistant":false,"tryUFBPlacements":{"bar":"logged-in-nav","mobile":"logged-in-nav","profile":"account-menu"},"currentLocale":"en_US","searchPhrase":null,"persistentSearch":false}'
+            data-module-priority=-10>
+            <div class="smart-bar-spacer smart-bar-module--smart-bar-spacer--JTyvD" data-testid=smart-bar-spacer></div>
+            <div class="desktop-header-module--mobile-header--EaZjO sf-hidden"></div><span
+                class=desktop-header-module--mark--adaV7></span>
+                   
+        
+                <div class=umc-main-content>
+                    <div class=umc-main-content-header>
+                        <div class="um-container um-text-center">
+                            <h1 class=ud-heading-xl>Public profile</h1>
+                            <p class="um-mt-xs ud-text-md">Add information about yourself</p>
+                        </div>
+                    </div>
+                        <form action=/user/edit-profile/ method=post>
+                            <div class=um-container>
+                                <div class=um-section>
+                                    <fieldset class=ud-form-group>
+                                        <legend class="ud-form-label ud-heading-sm">Basics:</legend>
+                                        <div class=ud-form-group><label class="ud-sr-only ud-form-label ud-heading-sm"
+                                                for=form-group--3>First Name</label><input aria-invalid=false name=name
+                                                maxlength=64 required placeholder="First Name"
+                                                data-purpose=edit-profile:name id=form-group--3 type=text
+                                                class="ud-text-input ud-text-input-large ud-text-md" value={{ current_user.username }}>
+                                        </div>
+                                        <div class=ud-form-group><label class="ud-sr-only ud-form-label ud-heading-sm"
+                                                for=form-group--5>Email</label><input aria-invalid=false
+                                                name=surname maxlength=64 required placeholder="Email"
+                                                data-purpose=edit-profile:surname id=form-group--5 type=text
+                                                class="ud-text-input ud-text-input-large ud-text-md" value="{{current_user.email}}">
+                                            </div>
+
+                                            <div class=ud-form-group><label class="ud-sr-only ud-form-label ud-heading-sm"
+                                                for=form-group--3>description</label><input aria-invalid=false name={{ current_user.description }}
+                                                maxlength=64 required placeholder="Description"
+                                                data-purpose=edit-profile:name id=form-group--3 type=text
+                                                class="ud-text-input ud-text-input-large ud-text-md" value={{ current_user.description }}>
+                                            </div>
+                                            <div class=ud-form-group><label class="ud-sr-only ud-form-label ud-heading-sm"
+                                                for=form-group--3>designation</label><input aria-invalid=false name={{ current_user.designation }}
+                                                maxlength=64 required placeholder="designation"
+                                                data-purpose=edit-profile:name id=form-group--3 type=text
+                                                class="ud-text-input ud-text-input-large ud-text-md" value={{ current_user.designation }}>
+                                            </div>
+
+
+
+
+
+
+
+                                        
+                                        <div class=ud-form-group><label class="ud-sr-only ud-form-label ud-heading-sm"
+                                                for=form-group--12>Language</label>
+                                            <div class="ud-select-container ud-select-container-large"><select required
+                                                    aria-invalid=false name=locale data-purpose=edit-profile:locale
+                                                    id=form-group--12 class="ud-select ud-text-md">
+                                                    <option value disabled>-- Select Language --
+                                                    <option value=de_DE>Deutsch
+                                                    <option value=en_US selected>English (US)
+                                                    <option value=es_ES>Español (España)
+                                                    <option value=fr_FR>Français (France)
+                                                    <option value=id_ID>Bahasa Indonesia
+                                                    <option value=it_IT>Italiano
+                                                    <option value=ja_JP>日本語
+                                                    <option value=ko_KR>한국어
+                                                    <option value=nl_NL>Nederlands
+                                                    <option value=pl_PL>Polski
+                                                    <option value=pt_BR>Português (Brasil)
+                                                    <option value=ro_RO>Română
+                                                    <option value=ru_RU>Русский
+                                                    <option value=th_TH>ภาษาไทย
+                                                    <option value=tr_TR>Türkçe
+                                                    <option value=vi_VN>Tiếng Việt
+                                                    <option value=zh_CN>中文(简体)
+                                                    <option value=zh_TW>中文 (繁體)
+                                                </select>
+                                                <div class="ud-select-icon-container ud-select-icon-right"><svg
+                                                        aria-hidden=true focusable=false
+                                                        class="ud-icon ud-icon-small ud-icon-color-neutral">
+                                                        <use xlink:href=#icon-expand></use>
+                                                    </svg></div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class=um-section>
+                                    <fieldset class=ud-form-group>
+                                        <legend class="ud-form-label ud-heading-sm">Links:</legend>
+                                        <div class=ud-form-group><label class="ud-sr-only ud-form-label ud-heading-sm"
+                                                for=form-group--16>Website</label><input aria-invalid=false
+                                                name=website_url placeholder="Website (http(s)://..)"
+                                                data-purpose=edit-profile:website-url id=form-group--16 type=url
+                                                class="ud-text-input ud-text-input-large ud-text-md" value></div>
+                                        <div class=ud-form-group><label class="ud-sr-only ud-form-label ud-heading-sm"
+                                                for=form-group--18>Twitter</label>
+                                            <div class=text-input-with-addons--with-addons--60Asl>
+                                                <div class=ud-text-input-container>
+                                                    <div
+                                                        class="edit-profile-form--social-url-prefix--xfcxX text-input-with-addons--addon--wB52-">
+                                                        http://twitter.com/</div><input
+                                                        aria-describedby=form-group-note--19 aria-invalid=false
+                                                        name=twitter_profile maxlength=128 placeholder="Twitter Profile"
+                                                        data-purpose=edit-profile:twitter-profile id=form-group--18
+                                                        type=text class="ud-text-input ud-text-input-large ud-text-md"
+                                                        value>
+                                                    <div class=ud-text-input-box></div>
+                                                </div>
+                                            </div>
+                                            <div id=form-group-note--19 class="ud-form-note ud-text-xs">Add your Twitter
+                                                username (e.g. johnsmith).</div>
+                                        </div>
+                                        <div class=ud-form-group><label class="ud-sr-only ud-form-label ud-heading-sm"
+                                                for=form-group--20>Facebook</label>
+                                            <div class=text-input-with-addons--with-addons--60Asl>
+                                                <div class=ud-text-input-container>
+                                                    <div
+                                                        class="edit-profile-form--social-url-prefix--xfcxX text-input-with-addons--addon--wB52-">
+                                                        http://www.facebook.com/</div><input
+                                                        aria-describedby=form-group-note--21 aria-invalid=false
+                                                        name=facebook_profile maxlength=128
+                                                        placeholder="Facebook Profile"
+                                                        data-purpose=edit-profile:facebook-profile id=form-group--20
+                                                        type=text class="ud-text-input ud-text-input-large ud-text-md"
+                                                        value>
+                                                    <div class=ud-text-input-box></div>
+                                                </div>
+                                            </div>
+                                            <div id=form-group-note--21 class="ud-form-note ud-text-xs">Input your
+                                                Facebook username (e.g. johnsmith).</div>
+                                        </div>
+                                        <div class=ud-form-group><label class="ud-sr-only ud-form-label ud-heading-sm"
+                                                for=form-group--22>LinkedIn</label>
+                                            <div class=text-input-with-addons--with-addons--60Asl>
+                                                <div class=ud-text-input-container>
+                                                    <div
+                                                        class="edit-profile-form--social-url-prefix--xfcxX text-input-with-addons--addon--wB52-">
+                                                        http://www.linkedin.com/</div><input
+                                                        aria-describedby=form-group-note--23 aria-invalid=false
+                                                        name=linkedin_profile maxlength=128
+                                                        placeholder="LinkedIn Profile"
+                                                        data-purpose=edit-profile:linkedin-profile id=form-group--22
+                                                        type=text class="ud-text-input ud-text-input-large ud-text-md"
+                                                        value>
+                                                    <div class=ud-text-input-box></div>
+                                                </div>
+                                            </div>
+                                            <div id=form-group-note--23 class="ud-form-note ud-text-xs">Input your
+                                                LinkedIn resource id (e.g. in/johnsmith).</div>
+                                        </div>
+                                        <div class=ud-form-group><label class="ud-sr-only ud-form-label ud-heading-sm"
+                                                for=form-group--24>Youtube</label>
+                                            <div class=text-input-with-addons--with-addons--60Asl>
+                                                <div class=ud-text-input-container>
+                                                    <div
+                                                        class="edit-profile-form--social-url-prefix--xfcxX text-input-with-addons--addon--wB52-">
+                                                        http://www.youtube.com/</div><input
+                                                        aria-describedby=form-group-note--25 aria-invalid=false
+                                                        name=youtube_profile maxlength=128 placeholder="Youtube Profile"
+                                                        data-purpose=edit-profile:youtube-profile id=form-group--24
+                                                        type=text class="ud-text-input ud-text-input-large ud-text-md"
+                                                        value>
+                                                    <div class=ud-text-input-box></div>
+                                                </div>
+                                            </div>
+                                            <div id=form-group-note--25 class="ud-form-note ud-text-xs">Input your
+                                                Youtube username (e.g. johnsmith).</div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class=ud-footer-btns style=text-align:left><button type=submit
+                                        data-purpose=user_manage:submit
+                                        class="ud-btn ud-btn-large ud-btn-primary ud-heading-md"><span
+                                            class=ud-btn-label>Save</span></button></div>
+                                <div class="ud-footer-btns-spacer sf-hidden"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+{% endblock %}
