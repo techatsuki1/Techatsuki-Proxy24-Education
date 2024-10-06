@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ActLearn - Course Selection</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f4f8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            color: #2c3e50;
+            font-weight: 600;
+            letter-spacing: -1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-card h2 {
+            font-size: 1.6em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .course-card p {
+            font-size: 1em;
+            color: #7f8c8d;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .course-card a {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .course-card a:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .course-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ActLearn: Choose Your Scenario</h1>
+        </header>
+        <div class="course-grid">
+            <div class="course-card">
+                <h2>A Bittersweet Message</h2>
+                <p>Practice transitioning between happiness and sadness in this emotional scenario.</p>
+                <a href="{% url 'act' %}">Start Scenario</a>
+            </div>
+            <div class="course-card">
+                <h2>The Unjust Accusation</h2>
+                <p>Navigate the complex emotions of anger and fear in a professional setting.</p>
+                <a href="{% url 'act' %}">Start Scenario</a>
+            </div>
+            <div class="course-card">
+                <h2>Dream Job or Risky Move?</h2>
+                <p>Explore the mix of excitement and apprehension in a life-changing moment.</p>
+                <a href="{% url 'act' %}">Start Scenario</a>
+            </div>
+            <div class="course-card">
+                <h2>Last-Minute Cancellation</h2>
+                <p>Express the disappointment and frustration of unexpected changes.</p>
+                <a href="{% url 'act' %}">Start Scenario</a>
+            </div>
+            <div class="course-card">
+                <h2>Unfair Recognition</h2>
+                <p>Portray the conflicting emotions of pride and injustice in the workplace.</p>
+                <a href="{% url 'act' %}">Start Scenario</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

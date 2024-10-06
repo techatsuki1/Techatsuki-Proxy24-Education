@@ -10,9 +10,12 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('auth/',views.auth,name='auth'),
     path('about/',views.about,name="about"),
+    path('act/',views.act,name='act'),
+    path('scene/',views.scene,name="scene"),
     path('upload/',views.upload,name="upload"),
     path('learning/',views.learning,name="learning"),
     path('detect-scene/', views.detect, name='detect'),
+    path('liveemotion/', views.liveemotion, name='liveemotion'),
     
 ]
 if settings.DEBUG:

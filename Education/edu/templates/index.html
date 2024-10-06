@@ -81,6 +81,10 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'learning' %}">Learning Videos</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'liveemotion' %}">Start Live Emotion Detection</a>
+        </li>
+        
       </ul>
     </div>
   </div>
@@ -100,7 +104,7 @@
     <div class="col-md-6">
       <h2>Try Acting Like Big Stars</h2>
       <p style="width: 90%;">Unleash your potential and step into the spotlight by mastering the techniques used by the stars of the big screen.</p>
-      <a href="video.html" class="btn btn-primary btn-try-it">Try It</a>
+      <a href="{% url 'scene' %}" class="btn btn-primary btn-try-it">Try It</a>
     </div>
     <!-- Small image on the right -->
     <div class="col-md-6">
@@ -120,7 +124,7 @@
     <div class="col-md-6">
       <h2>Watch Videos and Learn Acting</h2>
       <p style="width: 90%;">Learn from the best by watching curated videos, where you can explore different acting techniques and hone your skills.</p>
-      <a href="#" class="btn btn-primary btn-try-it">Start Watching</a>
+      <a href="{% url 'learning' %}" class="btn btn-primary btn-try-it">Start Watching</a>
     </div>
   </div>
 </div>
