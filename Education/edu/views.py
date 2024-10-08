@@ -135,14 +135,14 @@ def detect(request):
     reference_video_path = os.path.join(settings.MEDIA_ROOT, 'reference_video.mp4')  # Adjust this file name
     student_video_path = os.path.join(settings.MEDIA_ROOT, 'student_video.mp4')
     compare_videos('reference_video.mp4', 'student_video.mp4')
-
-
+    return render(request,'index.html')
+haarcascade_frontalface_default=os.path.join(settings.MEDIA_ROOT, 'haarcascade_frontalface_default.xml')
 def liveemotion(request):
     import cv2
     from deepface import DeepFace
 
     # Load face cascade classifier
-    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + haarcascade_frontalface_default)
 
     # Start capturing video
     cap = cv2.VideoCapture(0)
@@ -185,5 +185,6 @@ def liveemotion(request):
     # Release the capture and close all windows
     cap.release()
     cv2.destroyAllWindows()
-    return render(request,'index.html')
 
+
+    return render(request, 'index.html')
